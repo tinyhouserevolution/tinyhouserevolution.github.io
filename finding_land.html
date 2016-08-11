@@ -3,7 +3,7 @@
 <head>
 <link href='https://fonts.googleapis.com/css?family=Courgette|Cantarell|Gudea|Quattrocento+Sans|ABeeZee|Comfortaa' rel='stylesheet' type='text/css'>
 <link rel='stylesheet' href="Font.css">
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHXPnqrnjJXI0qUINjh6QQF26jHMT-ImE&callback=map&sensor=false"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHXPnqrnjJXI0qUINjh6QQF26jHMT-ImE&callback=initMap&sensor=false"
     async defer></script>
 </head>
 <head>
@@ -109,7 +109,7 @@ li a:hover:not(.active) {
 	
     ];
 
-    var map = new google.maps.Map(document.getElementById('map'), {
+    var map = new google.maps.Map(document.getElementById('initMap'), {
       zoom: 4,
       center: new google.maps.LatLng(39.83333, -98.58334 ),
       mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -122,13 +122,13 @@ li a:hover:not(.active) {
     for (i = 0; i < locations.length; i++) { 
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
+        map: initMap
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
           infowindow.setContent(locations[i][0]);
-          infowindow.open(map, marker);
+          infowindow.open(initMap, marker);
         }
       })(marker, i));
     }
